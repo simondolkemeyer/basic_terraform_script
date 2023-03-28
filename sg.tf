@@ -1,7 +1,7 @@
 resource "aws_security_group" "My_VPC_Security_group" {
   name        = "My_VPC_Security_Group"
   description = "Allow http and SSH"
-  vpc_id      = "${aws_vpc.t4-vpc.id}"
+  vpc_id      = aws_vpc.My_VPC.id
 
 
  ingress {
