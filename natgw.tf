@@ -33,3 +33,8 @@ resource "aws_route_table" "Private_Route_Table_NAT" {
    subnet_id      = aws_subnet.private_subnet_1.id
    route_table_id = aws_route_table.Private_Route_Table_NAT.id
 }
+
+resource "aws_route_table_association" "private_subnet_2_association" {
+    subnet_id      = aws_subnet.private_subnet_2.id
+    route_table_id = aws_route_table.Private_Route_Table_NAT.id
+}

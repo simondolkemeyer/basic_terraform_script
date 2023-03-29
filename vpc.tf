@@ -27,3 +27,22 @@ resource "aws_subnet" "private_subnet_1" {
     Name = "private_subnet_1"
   }
 }
+
+resource "aws_subnet" "private_subnet_2" {
+  vpc_id            = aws_vpc.My_VPC.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "us-west-2b"
+
+  tags = {
+    Name = "private_subnet_2"
+  }
+}
+
+resource "aws_db_subnet_group" "db_subnet_group" {
+  name        = "db_subnet_group"
+  subnet_ids  = [aws_subnet.private_subnet_1.id, aws_subnet.private_subnet_2.id]
+
+  tags = {
+    Name = "db_subnet_group"
+  }
+}

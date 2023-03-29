@@ -21,6 +21,13 @@ resource "aws_security_group" "My_VPC_Security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    description = "mysql"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  } 
 
   egress {
     from_port   = 0
@@ -32,5 +39,22 @@ resource "aws_security_group" "My_VPC_Security_group" {
 
   tags = {
     Name = "My_VPC_Security_Group"
+  }
+}
+
+
+resource "aws_security_group" "allow_db_access" {
+  name        = "allow_db_access"
+  vpc_id = aws_vpc.My_VPC.id
+
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    security_groups = [aws_security_group.My_VPC_Security_group.id] 
+  }
+
+  tags = {
+    Name = "allow_db_access"
   }
 }
