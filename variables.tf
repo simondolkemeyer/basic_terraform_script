@@ -1,3 +1,6 @@
+# Variables can be used to store values used in .tf code
+# Use format as shown here. Use "var.[variable name]" to use in code
+
 variable "key" {
     default = "nfdemo"
 }
