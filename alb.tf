@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "alb_target_group" {
 }
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb_target_group_attachment
 resource "aws_lb_target_group_attachment" "attach-app1" {
-  count            = length(aws_instance.My_ec2_instance.id)
+  count            = length(aws_instance.My_ec2_instance)
   target_group_arn = aws_lb_target_group.alb_target_group.arn
   target_id        = element(aws_instance.My_ec2_instance.*.id, count.index)
   port             = 80
