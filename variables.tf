@@ -8,7 +8,3 @@ variable "key" {
 variable "ami" {
     default = "ami-0df24e148fdb9f1d8"
 }
-
-variable "dbstorage" {
-    default = "20"
-}
